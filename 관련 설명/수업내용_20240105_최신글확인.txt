@@ -1,0 +1,5 @@
+
+ [ 최신글 보여주고자 하는 페이지 수정 (메인 페이지 : lading.html) ] ::: lading.html
+
+
+ [ 프로젝트에서 views.py ] 의 landing 함수 수정 (Post 클래스도 import 해야 함.)

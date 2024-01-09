@@ -1,0 +1,74 @@
+
+ [ django ] ver.3 사용
+
+ * 참고 Document 사이트 ::: https://docs.djangoproject.com/en/3.0/
+
+
+   =================================================
+   ▒▒▒         VScode에서 가상환경 구축 및 프로젝트 생성	         ▒▒▒
+   =================================================
+
+   1) python-3.10.11-amd64.exe 파일 설치 
+      ① Python 프로그램 설치 위치(기본값) ::: [C:\Users\Administrator\AppData\Local\Programs\Python\Python310]
+
+      ② VScode에서 Python 가상환경을 사용하기 위해서는 [ VScode > Extensions] 에서 'Python Extension for Visual Studio Code'가 설치되어 있어야 함.
+
+
+   2) [Ctrl + Shift + P]를 눌러 'Python: Select Interpreter'를 입력(선택)하여 프로젝트 진행을 위한 가상환경 Python설정
+      ① 환경변수 추가 ([시스템 속성 > 환경변수]에서 Administrator에서 사용자변수의 path)
+          >>> C:\Users\Administrator\AppData\Local\Programs\Python\Python310\
+          >>> C:\Users\Administrator\AppData\Local\Programs\Python\Python310\Scripts\
+
+      ② VScode 내에 Python 가상환경 생성 및 접속
+          >>> 메뉴바에서 [Terminal > New Terminal]에서 cmd창으로 변경
+	- [cmd창 변경방법] Terminal 창의 우측 상단 + 버튼을 클릭하여 [Command Prompt] 선택
+          >>> cmd 창에서 Python 프로그램의 버전 확인 후, 가상환경 생성 
+	- 가상환경 생성 ::: python(ⓐ) -m venv myenv(ⓑ)
+	     	ⓐ 파이썬 프로그램 실행 ::: 파이썬 프로그램 실행파일의 풀 경로를 입력할 수도 있음.
+		    (예> C:\Users\Administrator\AppData\Local\Programs\Python\Python310\python.exe)
+ 		ⓑ 생성하고자 하는 가상환경 이름 ::: 정상적으로 가상환경 세팅시 '가상환경 이름'으로 폴더가 생성됨.
+          >>> 생성한 가상환경에 접속 ::: [가상환경 폴더명]\Scripts\activate
+	- 설치된 Python 프로그램의 버전 확인 ::: python --version
+	- [참고] 접속한 가상환경을 종료 ::: deactivate
+	- 생성한 가상환경 내의 프로그램 리스트 확인 ::: pip list
+	   	>> 리스트 내에 update가 필요한 항목이 있으면 표기됨 ::: 표기된 update 항목이 있으면 update 실행 (python.exe -m pip install --upgrade pip)
+
+      ③ 가상환경 내 관련 프로그램 설치 (requirements.txt 파일을 생성하여 한번에 설치할 수 있음.)
+	- 설치 명령어 ::: pip install -r requirements.txt (requirements.txt 파일은 초기 폴더 위치에 있어야 함.
+	- 생성한 가상환경 내의 프로그램 리스트 확인 ::: pip list
+	   	>> 리스트 내에 update가 필요한 항목이 있으면 표기됨 ::: 표기된 update 항목이 있으면 update 실행 (python.exe -m pip install --upgrade pip)
+
+      ④ 사용하고자 하는 기본 프로젝트 생성
+	- 명령어 ::: django-admin startproject mysite .
+		>> [명령어 설명] django-admin startproject [폴더명] [생성하고자 하는 폴더 경로]
+
+
+
+
+
+   =================================================
+   ▒▒▒    python의 명령문 (명령문 시작 ::: python manage.py)    ▒▒▒
+   =================================================
+
+   1) DB 생성 ::: python manage.py migrate
+
+   2) 관리자 계정 생성 ::: python manage.py createsuperuser
+	- 명령문 실행 후, 관리자 계정 정보( id / email / password ) 입력하여 생성
+
+   3) 서버 실행 ::: python manage.py runserver
+
+   4) 앱 생성 ::: python manage.py startapp blog
+	- [명령어 설명] python manage.py startapp [생성하려는 앱(폴더) 이명]
+	- 생성한 앱 등록 ::: settings.py 파일 내 'INSTALLED_APPS' 변수에 생성한 앱 폴더명을 등록
+	- 생성한 앱을 웹페이지에서 실행하기 위해 프로젝트의 urls.py 파일 내 'urlpatterns' 변수에 경로(path) 등록
+
+
+
+
+
+   =================================================
+   ▒▒▒         django 프로세스 상에서의 기본 참고사항 모음        ▒▒▒
+   =================================================
+
+   1) django에서는 모든 html 파일을 [template] 안에 있어야 함.
+

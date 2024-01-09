@@ -1,0 +1,40 @@
+
+  [ 'board' 추가 ] << app으로 만들어서 admin에서 데이터 입력/삭제 가능
+
+
+  [1] 프로젝트에 새로운 앱(board) 추가 및 등록
+
+        1) 앱 추가 ::: python manage.py startapp board
+
+        2) 프로젝트의 settings.py 파일 내 'INSTALLED_APPS' 변수에 생성한 앱 폴더명을 등록
+
+        3) 프로젝트의 urls.py 파일 내 'urlpatterns' 변수에 앱 실행을 위한 path 등록 (∵ 등록이 되어야 생성한 앱을 웹페이지에서 실행)
+
+
+
+  [2] 등록한 앱(blog) 내에서의 작업
+
+        1) 앱 실행을 위해 urls.py 파일 생성 :::  'urlpatterns' 변수 설정  
+
+        2) (urls.py 파일 의 urlpatterns에서 사용한 path에 따라) views.py 파일로 이동
+
+        3) views.py 파일 내용 작성 
+	[ FBV(Function Based View) 방식 ] 
+	      ① views.py 파일 내에  함수 생성 (∵ urls.py 파일에서 사용하기 위해 함수 생성)
+	      ② models.py 파일에 게시글 포스트를 위한 클래스(Post) 생성 ::: 클래스 내에 생성자 및 메소드(함수) 추가
+	      ③ admin 페이지에서 게시글 포스트가 가능하도록 admin.py 페이지 수정 및 cmd 창에서 명령어 실행 (DB에 반영하기 위한 작업)
+		- python manage.py makemigrations 실행
+ 		- python manage.py migrate 실행
+
+	[ CBV(Class Based View) 방식 ] 
+	      ① views.py 파일 내에  함수 생성 (∵ urls.py 파일에서 사용하기 위해 함수 생성)
+	      ② models.py 파일에 게시글 포스트를 위한 클래스(Post) 생성 ::: 클래스 내에 생성자 및 메소드(함수) 추가
+	      ③ admin 페이지에서 게시글 포스트가 가능하도록 admin.py 페이지 수정 및 cmd 창에서 명령어 실행 (DB에 반영하기 위한 작업)
+		- python manage.py makemigrations 실행
+ 		- python manage.py migrate 실행
+
+
+
+ 
+
+

@@ -1,0 +1,4 @@
+
+ 클라이언트 ID ::: 325456883351-1ddotdektpt7p4iac6j63604j0g77s4t.apps.googleusercontent.com
+
+ 클라이언트 보안 비밀번호 ::: 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

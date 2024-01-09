@@ -1,0 +1,24 @@
+{% extends 'blog/base_full_width.html' %}               {% comment %} 기본 Template으로 사용하고자 하는 template을 상속 {% endcomment%}
+
+{% load crispy_forms_tags %}
+
+{% block head_title %} Create Post - Blog {% endblock %}
+
+{% block main_area %}
+    <h1>Create New Post</h1>
+    <hr />
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form | crispy }}          <!--    외부 라이브러리인 crispy를 적용하고 싶은 폼에는 변수 해당 변수명 사용시 '| crispy' 붙이기    -->
+
+        <div id="div_id_tags_str">
+            <label for="id_tags_str">Tags:</label>
+            <input type="text" name="tags_str" id="id_tags_str" class="textinput textInput form-control" />
+        </div>
+        <br />
+
+        <button type="submit" class="btn btn-primary float-right">Submit</button>
+    </form>
+    {{ form.media }} <!-- crispy form에서 사용하는 media를 사용하기 위해 추가. 해당 폼에 필요한 css, js 파일을 불러옴.      -->
+{% endblock %}

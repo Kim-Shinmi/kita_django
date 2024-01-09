@@ -1,0 +1,41 @@
+
+	[ 로그인 처리 ]
+
+ 0) 로그인 기능 사용을 위한 관련 라이브러리(django-allauth) 설치 ::: pip install django-allauth
+
+ 1) 로그인을 위한 선 작업
+
+     ① 프로젝트 폴더(mysite) 내 'settings.py' 파일 내 작업
+	-  'INSTALLED_APPS' 리스트 내에 계정 관리 관련 내용 추가
+	- 사용자 인증 관련 작업을 위해 'AUTHENTICATION_BACKENDS' 리스트 변수와 내용 추가
+	- 기타 관련내용 작업을 위한 변수와 변수 내용 추가 (세부사항은 파일 내 주석으로 추가
+	   ::: SITE_ID / ACCOUNT_EMAIL_REQUIRED / ACCOUNT_EMAIL_VERIFICATION / LOGIN_REDIRECT_URL
+
+     ② 수정된 내용 적용을 위해 마이그레이션 실행 ::: python manage.py migrate (새로 만든 model이 없으니 makemigrations는 필요 없음)
+
+     ③ 프로젝트 폴더(mysite) 내 'urls.py' 파일 내 작업
+	- 'urlpatterns' 리스트 변수에 사용자 인증 관련 내용을 위한 path 추가 (allauth.urls(django에서 기본으로 제공하는 기능)를 사용 >> 별도의 세팅이 필요 없음) 
+
+     ④ 'navbar.html' 파일에 로그인 관련 항목 추가	
+
+
+
+ 2) 구글에서의 로그인 처리를 위한 작업 ::: console.developers.google.com 페이지에 접속
+
+     ① 프로젝트 만들기 ::: 프로젝트 명 - myKITA
+
+     ② OAuth 동의화면 ::: (외부)에서 필수항목(3개) 입력 > [저장후 계속] 버튼 클릭 >>>> [대시보드로 돌아가기] 버튼 나올 때까지!!! 
+
+     ③ 사용자 인증 정보 ::: OAuth 클라이언트 ID 만들기 >>> 이름(프로젝트 명과 동일) / 승인된 자바스크립트 원본(http://127.0.0.1:8000) / 승인된 리디렉션 URI(http://127.0.0.1:8000/accounts/google/login/callback/)
+
+	클라이언트 ID ::: 325456883351-1ddotdektpt7p4iac6j63604j0g77s4t.apps.googleusercontent.com
+ 	클라이언트 보안 비밀번호 ::: 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
+
+
+
+ 3) admin 페이지에서 작업
+
+     ① [Site] ::: 샘플로 주어진 항목(example.com)의 정보를 수정 ::: Domain name(127.0.0.1:8000) / Display name(local development)
+
+     ② [SOCIAL ACCOUNTS > Social applications] ::: [Add] 버튼을 클릭하여 정보 등록
+

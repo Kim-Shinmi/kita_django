@@ -1,0 +1,115 @@
+
+ ▒▒▒▒▒▒▒▒▒▒ [ 2023-12-27 ] [ 해시태그 만들기 ] ▒▒▒▒▒▒▒▒▒▒
+
+  1) 데이터 등록 (models.py) ::: Tag 클래스 추가 후, Post 클래스에서 tags 변수 설정
+
+  2) admin 설정 ::: Tag 클래스 사용을 위해 import 추가 후, TagAdmin 클래스 추가
+
+
+	>>> python manage.py makemigrations    ///   python manage.py migrate
+
+
+  3) urls.py 설정 ::: Tag 선택시 이동을 위한 경로(path) 설정.
+
+  4) views.py 설정 ::: Tag 클래스 사용을 위해 import 추가 후, urls.py에 설정한 path의 사용을 위한 함수(tag_page) 정의.
+
+
+
+
+
+ ▒▒▒▒▒▒▒▒▒▒ [ 2023-12-28 ] [ 사용자 POST Create 만들기 ] ▒▒▒▒▒▒▒▒▒▒
+
+  1) 프로젝트 폴더(예> mysite) 내 settings.py 파일에 양식의 디자인을 위한 설정
+	- INSTALLED_APPS 리스트 내에 
+
+
+    'crispy_forms',             # django에서 양식을 제작하는 데 사용되는 기본 style을 제공하는 외부 라이브러리
+    'markdownx'                 # textarea에서 markdown 기능(#을 이용한 글자크기 조정)
+
+
+
+  2) models.py에 import 후 Post 클래스에서 관련 내용 수정
+	- 
+		- from markdownx.models import MarkdownxField
+		- from markdownx.utils import markdown
+	- Post 클래스 내 관련 내용 수정
+		- 변수(content) 수정
+		- 함수(get_content_markdownx) 추가
+	
+
+
+	>>> python manage.py makemigrations    ///   python manage.py migrate
+
+
+  3) urls.py 설정 ::: post 작성/수정을 위한 경로(path) 설정.
+    	- path("create_post/", views.PostCreate.as_view()),
+
+  4) views.py 설정 ::: Tag 클래스 사용을 위해 import 추가 후, urls.py에 설정한 path의 사용을 위한 클래스(PostCreate) 정의.
+	- import
+		from django.views.generic import ListView, DetailView, CreateView, UpdateView
+		from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin 
+		from django.utils.text import slugify
+		from django.shortcuts import get_object_or_404
+		from django.core.exceptions import PermissionDenied
+		from django.db.models import Q
+
+	- PostCreate 클래스 생성
+
+  5) 관련 html 페이지 생성
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ ▒▒▒▒▒▒▒▒▒▒ [ 2023-12-28 ] [ 사용자 POST(CRUD) 만들기 ] ▒▒▒▒▒▒▒▒▒▒
+
+  1) 프로젝트 폴더(예> mysite) 내 settings.py 파일에 양식의 디자인을 위한 설정
+	- INSTALLED_APPS 리스트 내에 
+
+
+    'crispy_forms',             # django에서 양식을 제작하는 데 사용되는 기본 style을 제공하는 외부 라이브러리
+    'markdownx'                 # textarea에서 markdown 기능(#을 이용한 글자크기 조정)
+
+
+
+  2) models.py에 import 후 Post 클래스에서 content 변수 수정 및 함수 추가
+	- from markdownx.models import MarkdownxField
+	- from markdownx.utils import markdown
+
+
+	>>> python manage.py makemigrations    ///   python manage.py migrate
+
+
+  3) urls.py 설정 ::: post 작성/수정을 위한 경로(path) 설정.
+	- path("create_post/", views.PostCreate.as_view()),
+	- path("update_post/<int:pk>/", views.PostUpdate.as_view()),
+
+  4) views.py 설정 ::: Tag 클래스 사용을 위해 import 추가 후, urls.py에 설정한 path의 사용을 위한 클래스(PostCreate, PostUpdate) 정의.
+	- import
+		from django.views.generic import ListView, DetailView, CreateView, UpdateView
+		from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin 
+		from django.utils.text import slugify
+		from django.shortcuts import get_object_or_404
+		from django.core.exceptions import PermissionDenied
+		from django.db.models import Q
+
+	- PostCreate, PostUpdate 클래스 생성
